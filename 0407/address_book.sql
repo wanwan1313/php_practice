@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `address_book`
+-- 資料表結構 `address_book2`
 --
 
-CREATE TABLE `address_book` (
+CREATE TABLE `address_book2` (
   `sid` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -38,10 +38,10 @@ CREATE TABLE `address_book` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `address_book`
+-- 傾印資料表的資料 `address_book2`
 --
 
-INSERT INTO `address_book` (`sid`, `name`, `email`, `mobile`, `address`, `birthday`, `create_at`) VALUES
+INSERT INTO `address_book2` (`sid`, `name`, `email`, `mobile`, `address`, `birthday`, `create_at`) VALUES
 (1, '吳宛蓉', 'wanwan1313@gmail.com', '0920288325', '新北市汐止區仁愛路152巷', '1989-01-13', '2021-04-07 04:31:57'),
 (2, '項柏諭', 'andrew@gmail.com', '0917936538', '新北市汐止區仁愛路152巷', '1990-07-03', '2021-04-07 04:35:00'),
 (3, 'momo', 'momo@gmail.com', '0912222222', '新北市汐止區仁愛路152巷', '1989-05-03', '2021-04-07 10:59:29'),
@@ -59,7 +59,7 @@ INSERT INTO `address_book` (`sid`, `name`, `email`, `mobile`, `address`, `birthd
 --
 -- 資料表索引 `address_book`
 --
-ALTER TABLE `address_book`
+ALTER TABLE `address_book2`
   ADD PRIMARY KEY (`sid`);
 
 --
@@ -69,7 +69,7 @@ ALTER TABLE `address_book`
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `address_book`
 --
-ALTER TABLE `address_book`
+ALTER TABLE `address_book2`
   MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
