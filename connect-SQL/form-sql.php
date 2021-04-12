@@ -31,7 +31,7 @@ $page_title = '我的新增表單';
                             <input type="password" class="form-control" id="userpassword" name="userpassword">
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
                     </form>
                 </div>
             </div>
