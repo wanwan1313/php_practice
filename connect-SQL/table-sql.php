@@ -12,14 +12,17 @@ $pages = ceil($page_row_total / $page_num); //算頁數
 
 
 // 從資料庫抓資料
-$page = isset($_GET['page']) ? intval($_GET['page']) : 1 ;
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1 ; //抓出目前所在頁數
+//防呆
 if($page < 1){
     $page = 1;
 }elseif( $page>$pages){
     $page = $pages;
 };
+
+//從資料庫抓資料的規則(從哪一個index開始,抓幾筆資料)
 $sql = sprintf("SELECT * FROM address_book2 LIMIT %s,%s", ($page-1)*$page_num , $page_num );
-$rows = $pdo->query($sql)->fetchAll();
+$rows = $pdo->query($sql)->fetchAll(); //全部抓出來，為一個陣列
 
 ?>
 
