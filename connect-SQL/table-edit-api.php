@@ -4,11 +4,12 @@ $output = [
 
     'success' => false,
     'code' => 0,
-    'msg' => '註冊失敗'
+    'msg' => '沒有修改資料'
 
 ];
 
-if ( isset($_POST['name'])){
+
+if ( isset($_POST['sid']) and isset($_POST['name'])){
 
     // TODO:欄位資料檢查
 
@@ -39,35 +40,31 @@ if ( isset($_POST['name'])){
 
 
     // 新增到資料庫
-    $R_SQL = " INSERT INTO `address_book2`(
-        `name`, `email`, `mobile`, `address`, `birthday`, `create_at`) 
-        VALUES (?,?,?,?,?,NOW())";
+    $R_SQL = " UPDATE `address_book2` SET 
+                        `name`=?,
+                        `email`=?,
+                        `mobile`=?,
+                        `address`=?,
+                        `birthday`=?
+                WHERE `sid`=?";
     
     $stmt = $pdo -> prepare($R_SQL);
     $stmt -> execute([
         $_POST['name'],
         $_POST['email'],
         $_POST['mobile'],
-        $_POST['address'] == "" ?  NULL:$_POST['address'],
-        $_POST['birthday'] == "" ?  NULL:$_POST['birthday']
+        $_POST['address'] == '' ?  NULL:$_POST['address'],
+        $_POST['birthday'] == '' ?  NULL:$_POST['birthday'],
+        $_POST['sid'],
     ]);
 
     if( $stmt -> rowcount()){
         $output['success'] = true;
-        $output['msg'] = '註冊成功';
+        $output['msg'] = '修改成功';
     };
-
-    
 
 };
 
-echo json_encode($output,JSON_UNESCAPED_UNICODE)
-
-
-
-
-
-
-
+echo json_encode($output,JSON_UNESCAPED_UNICODE);
 
 ?>

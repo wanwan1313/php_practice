@@ -1,7 +1,19 @@
 <?php include __DIR__ . '../../parts/comfig.php' ?>
 
 <?php
-$page_title = '我的新增表單';
+$page_title = '修改表單';
+
+$sid = intval($_GET['sid']);
+$come_from = $_SERVER['HTTP_REFERER'] ?? 'table-sql.php' ;
+
+if( empty($sid)){
+    header('Location: table-sql.php');
+    exit;
+};
+
+$edit_SQL = "SELECT * FROM `address_book2` WHERE `sid`= $sid ";
+$row = $pdo->query($edit_SQL)->fetch();
+
 
 ?>
 
@@ -18,38 +30,41 @@ $page_title = '我的新增表單';
     <div class="row">
         <div class="col-8 card">
             <div class="card-body">
-                <h5 class="card-title">會員註冊</h5>
+                <h5 class="card-title">修改會員資料</h5>
                 <div class="col-md-6">
                     <form name="form1" method="post" novalidate onsubmit="checkform(); return false;">
+
+                        <!-- 新增一個隱形的input >> 目的是把sid值傳回去給SERVER，才知道是改哪一筆資料 -->
+                        <input type="hidden" name="sid" value="<?=$row['sid']?>">
                         <div class="form-group">
                             <label for="name">*姓名</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <input type="text" class="form-control" id="name" name="name" required value="<?= htmlentities($row['name'])?>">
                             <small class="form-text" style="color: red;"> </small>
                         </div>
                         <div class="form-group">
                             <label for="email">*信箱</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <input type="email" class="form-control" id="email" name="email" required value="<?= htmlentities($row['email'])?>">
                             <small class="form-text" style="color: red;"> </small>
                         </div>
                         <div class="form-group">
                             <label for="mobile">*手機</label>
-                            <input type="text" class="form-control" id="mobile" name="mobile" pattern="09\d{2}-?\d{3}-?\d{3}">
+                            <input type="text" class="form-control" id="mobile" name="mobile" pattern="09\d{2}-?\d{3}-?\d{3}" value="<?= htmlentities($row['mobile'])?>">
                             <small class="form-text" style="color: red;"> </small>
                         </div>
                         <div class="form-group">
                             <label for="address">住址</label>
-                            <textarea class="form-control" name="address" id="address" cols="40" rows="3"></textarea>
+                            <textarea class="form-control" name="address" id="address" cols="40" rows="3"><?= htmlentities($row['address'])?></textarea>
                             <small class="form-text" style="color: red;"> </small>
                         </div>
                         <div class="form-group">
                             <label for="birthday">生日</label>
-                            <input type="date" class="form-control" id="birthday" name="birthday" required>
+                            <input type="date" class="form-control" id="birthday" name="birthday" required value="<?= htmlentities($row['birthday'])?>">
                             <small class="form-text" style="color: red;"> </small>
                         </div>
 
 
 
-                        <button type="submit" class="btn btn-primary">送出</button>
+                        <button type="submit" class="btn btn-primary">修改</button>
                     </form>
                 </div>
             </div>
@@ -103,7 +118,7 @@ $page_title = '我的新增表單';
 
         if(isPass){
             $.post(
-                'form-sql-api.php',
+                'table-edit-api.php',
                 $(document.form1).serialize(),
                 function(data){
 
@@ -117,10 +132,10 @@ $page_title = '我的新增表單';
             )
         }
 
-        location.href = 'table-edit.php'
-
+        location.href = '<?=$come_from?>'
 
     }
+
 </script>
 
 <?php include __DIR__ . '../../parts/html-foot.php' ?>
