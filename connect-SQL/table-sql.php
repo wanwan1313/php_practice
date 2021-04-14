@@ -75,7 +75,7 @@ $rows = $pdo->query($sql)->fetchAll(); //全部抓出來，為一個陣列
                     <!-- strip_tags()跳脫標籤的字元，會把標籤刪除-->
                     <td><?= $r['email'] ?></td>
                     <td><?= $r['mobile'] ?></td>
-                    <td><?= htmlentities($r['address']) ?></td>
+                    <td><?= htmlentities($r['sid']) ?></td>
                     <!-- htmlentities()跳脫標籤的字元，會把標籤直接顯示出來-->
                     <td><?= $r['birthday'] ?></td>
                     <td class="edit">

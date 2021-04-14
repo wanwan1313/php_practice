@@ -1,4 +1,4 @@
-<?php include __DIR__.'/parts/comfig.php' ?> 
+<?php include __DIR__.'../../parts/comfig.php' ?> 
 
 <!-- 需要置換的變數們 -->
 <?php 
@@ -31,13 +31,13 @@
 
 ?>
 
-<?php include __DIR__.'/parts/html-head.php' ?>
+<?php include __DIR__.'../../parts/html-head.php' ?>
 <!-- 這裡插入要放在head的東西 -->
 
 
-<?php include __DIR__.'/parts/html-body.php' ?>
+<?php include __DIR__.'../../parts/html-body.php' ?>
 
-<?php include __DIR__.'/parts/navber.php' ?>
+<?php include __DIR__.'../../parts/navber.php' ?>
 <!-- 這裡插入要放在body的內容 -->
 
 <div class="container">
@@ -62,10 +62,10 @@
 </div>
 
 
-<?php include __DIR__.'/parts/scripts.php' ?>
+<?php include __DIR__.'../../parts/scripts.php' ?>
 <!-- 這裡插入jQuery或JS -->
 <script>
 
 </script>
 
-<?php include __DIR__.'/parts/html-foot.php' ?>
+<?php include __DIR__.'../../parts/html-foot.php' ?>
