@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax2</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+</head>
+<body>
+
+    <pre id="result"></pre>
+   
+
+
+<script src="../lib/jquery-3.6.0.js"></script>
+<script src="../bootstrap/js/bootstrap.bundle.js"></script>
+
+<script>
+    $.get('JSON-encode2.php',{name:'momo',age:32,gender:'female'},function(data){
+        console.log(data)
+        $('#result').text(data)
+    },'json');
+</script>
+</body>
+</html>
