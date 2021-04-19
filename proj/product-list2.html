@@ -1,0 +1,141 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 商品列表 </title>
+    <link rel="stylesheet" href=" /php%20prac/proj/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href=" /php%20prac/proj/css/<br />
+<b>Notice</b>:  Undefined variable: mycss in <b>C:\xampp\htdocs\php prac\proj\parts\html-head.php</b> on line <b>10</b><br />
+">
+    <!-- FOA -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+    <!-- 這裡插入要放在head的東西 -->
+
+
+</head>
+<body>
+
+
+<style>
+    nav .nav-item.active {
+        background-color: #aaf;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link " href="product-list.php">商品列表</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="cart.php">購物車</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ">
+
+                                    <li class="nav-item ">
+                        <a class="nav-link ">Hello,wawan</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="logout.php">登出</a>
+                    </li>
+
+                
+            </ul>
+
+        </div>
+    </div>
+</nav><!-- 這裡插入要放在body的內容 -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="btn-group-vertical" role="group" style="width: 100%;">
+                <a type="button" class="btn btn-secondary" href="?">全部商品</a>
+                                <a type="button" class="btn btn-outline-secondary" href="?cate=1">程式設計</a>
+                                <a type="button" class="btn btn-outline-secondary" href="?cate=2">繪圖軟體</a>
+                                <a type="button" class="btn btn-outline-secondary" href="?cate=3">網際網路應用</a>
+                            </div>
+        </div>
+
+        <div class="col-lg-9 d-flex flex-wrap">
+            <div class="col-12">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <!-- 前一頁 -->
+                        <li class="page-item disabled"><a class="page-link" 
+                        href="?page=0">Previous</a></li>
+                        <!-- 頁碼 -->
+                            <li class="page-item active "><a class="page-link" href="?page=1">1</a></li>
+                            <li class="page-item  "><a class="page-link" href="?page=2">2</a></li>
+                            <li class="page-item  "><a class="page-link" href="?page=3">3</a></li>
+                        <!-- 後一頁 -->
+                        <li class="page-item "><a class="page-link " href="?page=2">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+                        <div class="col-md-3">
+                <div class="card">
+                    <img src="./imgs/small/PG30036.jpg" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h6 class="card-title">圖解C++程式設計
+</h6>
+                        <p><i class="fas fa-user-edit"></i>洪一新、許瑞珍</p>
+                        <p><i class="fas fa-dollar-sign"></i>560</p>
+                    </div>
+                </div>
+            </div>
+                        <div class="col-md-3">
+                <div class="card">
+                    <img src="./imgs/small/PG30035.jpg" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h6 class="card-title">圖解資料結構-使用JAVA</h6>
+                        <p><i class="fas fa-user-edit"></i>吳睿紘</p>
+                        <p><i class="fas fa-dollar-sign"></i>420</p>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-3">
+                <div class="card">
+                    <img src="./imgs/small/PG30034.jpg" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h6 class="card-title">Visual C# 2008網路遊戲程式設計</h6>
+                        <p><i class="fas fa-user-edit"></i>江家頡、陳怡均</p>
+                        <p><i class="fas fa-dollar-sign"></i>480</p>
+                    </div>
+                </div>
+            </div>
+                        <div class="col-md-3">
+                <div class="card">
+                    <img src="./imgs/small/PG20252.jpg" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h6 class="card-title">Java 重構- Java Refactoring</h6>
+                        <p><i class="fas fa-user-edit"></i>結城 浩</p>
+                        <p><i class="fas fa-dollar-sign"></i>490</p>
+                    </div>
+                </div>
+            </div>
+                    </div>
+    </div>
+</div>
+
+
+<script src=" /php%20prac/proj/lib/jquery-3.6.0.js"></script>
+<script src=" /php%20prac/proj/bootstrap/js/bootstrap.bundle.js"></script><!-- 這裡插入jQuery或JS -->
+
+</body>
+</html>

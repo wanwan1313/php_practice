@@ -23,11 +23,14 @@ if (isset($page_title) == false) {
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item <?= $page_title == '我的表格' ? 'active' : '' ?>">
-                    <a class="nav-link " href="table-sql.php">表格</a>
+                <li class="nav-item <?= $page_title == '商品列表' ? 'active' : '' ?>">
+                    <a class="nav-link " href="product-list.php">商品列表</a>
                 </li>
-                <li class="nav-item <?= $page_title == '我的新增表單' ? 'active' : '' ?>">
-                    <a class="nav-link" href="form-sql.php">新增</a>
+                <li class="nav-item <?= $page_title == '商品ajax' ? 'active' : '' ?>">
+                    <a class="nav-link " href="product-list3.php">商品ajax</a>
+                </li>
+                <li class="nav-item <?= $page_title == '購物車' ? 'active' : '' ?>">
+                    <a class="nav-link" href="cart.php">購物車</a>
                 </li>
             </ul>
             <ul class="navbar-nav ">
