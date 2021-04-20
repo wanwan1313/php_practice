@@ -30,7 +30,8 @@ if (isset($page_title) == false) {
                     <a class="nav-link " href="product-list3.php">商品ajax</a>
                 </li>
                 <li class="nav-item <?= $page_title == '購物車' ? 'active' : '' ?>">
-                    <a class="nav-link" href="cart.php">購物車</a>
+                    <a class="nav-link" href="cart-list.php">購物車<span class="badge badge-danger cart-count">0</span></a>
+                    
                 </li>
             </ul>
             <ul class="navbar-nav ">

@@ -128,7 +128,8 @@ $rows = $pdo->query($s_SQL)->fetchAll();
         let qty = card.find('select').val()
 
         $.get('cart-api.php',{'action':'add','psid':psid, 'qty':qty },function(data){
-            console.log(data)
+            // console.log(data)
+            showCartCount(data) //更新購物車小字
         }, 'json')
     })
 
