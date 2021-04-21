@@ -1,7 +1,51 @@
 <?php include __DIR__ . '/parts/comfig.php' ?>
 
 <?php
-$page_title = '購物車';
+$page_title = '訂購完成';
+
+if (!isset($_SESSION['user']) or empty($_SESSION['cart'])) {
+    header('Location: product-list.php');
+    exit;
+} else {
+    $total = 0;
+    foreach ($_SESSION['cart'] as $c) {
+        $total += $c['price'] * $c['quantity'];
+    };
+
+    $o_SQL = "INSERT INTO `orders`
+        (`sid`, `member_sid`, `amount`, `order_date`) 
+        VALUES 
+        (NULL,?,?,NOW())";
+
+    $o_stmt = $pdo->prepare($o_SQL);
+    $o_stmt->execute([
+        $_SESSION['user']['sid'],
+        $total
+    ]);
+
+    $order_sid =  $pdo->lastInsertId();
+
+    $d_SQL = "INSERT INTO `order_details`
+            (`order_sid`, `product_sid`, `price`, `quantity`) 
+            VALUES 
+            (?,?,?,?)";
+    $d_stmt = $pdo ->prepare($d_SQL);
+    
+    foreach($_SESSION['cart'] as $c){
+        $d_stmt -> execute([
+            $order_sid,
+            $c['sid'],
+            $c['price'],
+            $c['quantity']
+        ]);
+    };
+
+    unset($_SESSION['cart']);
+}
+
+
+
+
 
 
 ?>
@@ -17,69 +61,14 @@ $page_title = '購物車';
 
 <div class="container">
     <div class="row">
-        <?php if (empty($_SESSION['cart'])) : ?>
-            <div class="alert alert-danger" role="alert">
-                購物車是空的喔!
-            </div>
-        <?php else : ?>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">delete</th>
-                        <th scope="col">封面</th>
-                        <th scope="col">書名</th>
-                        <th scope="col">單價</th>
-                        <th scope="col">數量</th>
-                        <th scope="col">小記</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <?php foreach ($_SESSION['cart'] as $v) : ?>
-                        <tr class="product" data-sid="<?= $v['sid'] ?>">
-                            <td>
-                                <a href="javascript: " onclick="deleteItem(event)"><i class="fas fa-trash-alt"></i></a>
-                            </td>
-                            <td>
-                                <img style="width:100px" src="./imgs/small/<?= $v['book_id'] ?>.jpg" alt="">
-                            </td>
-                            <td><?= $v['bookname'] ?></td>
-                            <td class="price" data-price="<?= $v['price'] ?>"></td>
-                            <td>
-                                <select class="form-control quantity" data-qty="<?= $v['quantity'] ?>">
-                                    <?php for ($i = 1; $i <= 10; $i++) : ?>
-                                        <option value="<?= $i ?>"><?= $i ?></option>
-                                    <?php endfor; ?>
-
-                                </select>
-                            </td>
-                            <td class="sub-totalPrice"></td>
-                        </tr>
-                    <?php endforeach; ?>
-
-                    <tr>
-                        <td colspan="5" style="text-align: right;">總計</td>
-                        <td id="totalPrice"></td>
-                    </tr>
-                </tbody>
-            </table>
-
-
-        <?php endif; ?>
-
-
-    </div>
-    <div class="row">
         <div class="col">
-            <?php if( isset($_SESSION['user'])): ?>
-                <a href="cart-confirm.php" class="btn btn-success check">結帳</a>
-            <?php else: ?>
-                <div class="alert alert-danger" role="alert">
-                請先登入會員
+            <div class="alert alert-info" role="alert">
+                感謝訂購!
             </div>
-            <?php endif; ?>
         </div>
+
     </div>
+
 </div>
 
 
@@ -115,7 +104,7 @@ $page_title = '購物車';
 
             if ($('.product').length < 1) {
                 location.reload()
-                
+
             }
         }, 'json')
     }
@@ -124,7 +113,7 @@ $page_title = '購物車';
     quantity.on('change', function() {
         let qty = $(this).val()
         let psid = $(this).closest('.product').attr('data-sid')
-        console.log(qty,psid)
+        console.log(qty, psid)
         $.get('cart-api.php', {
             action: 'add',
             psid,
@@ -134,7 +123,7 @@ $page_title = '購物車';
             console.log(data) //console.log回傳的資料以方便除錯
             showCartCount(data) //更新購物車小字
             calcprice() //重新計算價格
-            
+
 
         }, 'json')
     })
