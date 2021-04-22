@@ -113,8 +113,7 @@ if (empty($cate) == false) {
             renderPages()
         }, 'json')
     }
-
-
+    
     // 按分類按鈕時
     function changeCate(c){
         cate = c
